@@ -14,14 +14,107 @@
 ]]
 
 print("[i] Thanks for using LuaPlus!")
-print("[i] Creating variables...")
-LuaPlus = {}
+print("[i] Creating variables and tables...")
+VJGjTIBggTjn = {}
+LuaPlus = {
+ObjectManager = {}
+ScriptManager = {}
+SimulationManager = {}
+}
 TabNum = 0
-print("[i] Creating functions...")
+
 function getlfenv()
-return LuaPlus
+return VJGjTIBggTjn
 end
 
+print("[i] Creating ScriptManager functions...")
+function LuaPlus.ScriptManager.DisableScript(obj)
+  if obj:IsA("BaseScript") or obj:IsA("LocalScript") then
+    obj.Disabled = true
+    else
+    print("[!] Script couldn't be disabled; Argument 'obj' is not a vaild script.")
+    end
+  end
+
+function LuaPlus.ScriptManager.EnableScript(obj)
+  if obj:IsA("BaseScript") or obj:IsA("LocalScript") then
+    obj.Disabled = false
+    else
+    print("[!] Script couldn't be enabled; Argument 'obj' is not a vaild script.")
+    end
+  end
+
+function LuaPlus.ScriptManager.CreateScript(scripttype, parent, code)
+  print("[!] CreateScript is not available at this time due to PluginSecurity.")
+  --[[
+  if type(code) == "string" then
+    if parent ~= nil then
+      if scripttype == "LocalScript" then
+        newscript = Instance.new("LocalScript")
+        newscript = "LuaPlus_Script_"..math.random(100000, 999999)
+        newscript.Parent = parent
+        newscript.Source = code
+        elseif scripttype = "BaseScript" then
+        newscript = Instance.new("Script")
+        newscript = "LuaPlus_Script_"..math.random(100000, 999999)
+        newscript.Parent = parent
+        newscript.Source = code
+        elseif scripttype = "ModuleScript" then
+        newscript = Instance.new("ModuleScript")
+        newscript = "LuaPlus_Script_"..math.random(100000, 999999)
+        newscript.Parent = parent
+        newscript.Source = code
+        end
+      else
+      print("[!] Couldn't create the script; The parent cannot be nil!")
+      end
+    else
+    print("[!] Couldn't create the script; Argument 'code' is not a string.")
+    end
+  ]]
+  end
+
+print("[i] Creating ObjectManager functions...")
+function LuaPlus.ObjectManager.DestroyObject(obj)
+  if obj:IsA("BasePart") then
+    obj.Name = "LuaPlus_Destroyed_Object"
+    obj:Destroy()
+    else
+    print("[!] Couldn't destroy object; Argument 'obj' is not a BasePart.")
+    end
+  end
+
+function LuaPlus.ObjectManager.DestroyBaseParts()
+  for i,v in pairs(workspace:GetDescendants()) do
+  if obj:IsA("BasePart") then
+    obj.Name = "LuaPlus_Destroyed_Object"
+    obj:Destroy()
+    else
+    end
+    end
+  end
+
+print("[i] Creating SimulationManager functions...")
+if game then
+  RunService = game:GetService("RunService")
+  function LuaPlus.SimulationManager.Pause()
+    RunService:Pause()
+  end
+  
+   function LuaPlus.SimulationManager.Run()
+    RunService:Run()
+  end
+  
+    function LuaPlus.SimulationManager.Stop()
+    RunService:Stop()
+  end
+  else
+  function LuaPlus.SimulationManager.NULL()
+  end
+  print("[!] SimulationManager will not work because this is not being ran inside of Roblox.")
+end
+
+print("[i] Creating functions...")
 function throw_new_exception(obj)
 if type(obj) == "string" then
 print("[i] Exception has been thrown: "..obj)
