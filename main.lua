@@ -17,8 +17,8 @@ print("[i] Thanks for using LuaPlus!")
 print("[i] Creating variables and tables...")
 VJGjTIBggTjn = {}
 LuaPlus = {
-ObjectManager = {}
-ScriptManager = {}
+ObjectManager = {};
+ScriptManager = {};
 SimulationManager = {}
 }
 TabNum = 0
