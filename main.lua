@@ -28,6 +28,7 @@ return VJGjTIBggTjn
 end
 
 print("[i] Creating ScriptManager functions...")
+if game then
 function LuaPlus.ScriptManager.DisableScript(obj)
   if obj:IsA("BaseScript") or obj:IsA("LocalScript") then
     obj.Disabled = true
@@ -73,8 +74,12 @@ function LuaPlus.ScriptManager.CreateScript(scripttype, parent, code)
     end
   ]]
   end
+  else
+  print("[!] ScriptManager will not work because this is not being ran inside of Roblox.")
+  end
 
 print("[i] Creating ObjectManager functions...")
+if game then
 function LuaPlus.ObjectManager.DestroyObject(obj)
   if obj:IsA("BasePart") then
     obj.Name = "LuaPlus_Destroyed_Object"
@@ -93,6 +98,9 @@ function LuaPlus.ObjectManager.DestroyBaseParts()
     end
     end
   end
+  else
+  print("[!] ObjectManager will not work because this is not being ran inside of Roblox.")
+  end
 
 print("[i] Creating SimulationManager functions...")
 if game then
@@ -109,8 +117,6 @@ if game then
     RunService:Stop()
   end
   else
-  function LuaPlus.SimulationManager.NULL()
-  end
   print("[!] SimulationManager will not work because this is not being ran inside of Roblox.")
 end
 
